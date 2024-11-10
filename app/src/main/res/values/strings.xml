@@ -1,0 +1,30 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">TrackHabit</string>
+
+    <!-- Default Notification Channel ID -->
+    <string name="default_notification_channel_id">default_channel_id</string>
+
+    <!-- Registration Screen Text -->
+    <string name="register_title">Register</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="register_button_text">Register</string>
+    <string name="login_button_text">Login</string>
+    <string name="registration_success">Registered successfully!</string>
+    <string name="registration_failure">All fields are required!</string>
+    <string name="login_failed">Login failed: </string>
+    <string name="select_habit_prompt">Select a Habit</string>
+    <string name="enter_new_display_name">Enter new display name</string>
+    <string name="save_name">Save Name</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string-array name="theme_options">
+        <item>Light Mode</item>
+        <item>Dark Mode</item>
+    </string-array>
+    <string name="log_out">Log Out</string>
+
+    <!-- TrackHabit Title on Login Screen -->
+    <string name="trackHabitTitle">TrackHabit</string>
+</resources>

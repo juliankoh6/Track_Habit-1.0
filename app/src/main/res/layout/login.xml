@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Large Heading at the top -->
+    <TextView
+        android:id="@+id/trackHabitTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TrackHabit"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-condensed"/>
+
+    <!-- TrackHabit's Motto -->
+    <TextView
+        android:id="@+id/mottoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make tracking habits easy!"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/trackHabitTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-condensed" />
+
+    <!-- Centered Email Field -->
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/mottoText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Centered Password Field -->
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_below="@id/emailField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Show/Hide Password CheckBox -->
+    <CheckBox
+        android:id="@+id/showPasswordCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Password"
+        android:layout_below="@id/passwordField"
+        android:layout_alignStart="@id/passwordField"
+        android:layout_marginTop="8dp" />
+
+    <!-- Centered Login Button -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="24sp"
+        android:layout_below="@id/showPasswordCheckbox"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/registerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New to TrackHabit? Click here"
+        android:textSize="19sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="230dp"
+        android:textAlignment="center"/>
+
+    <!-- Register Button aligned to bottom of the screen -->
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
+
+</RelativeLayout>

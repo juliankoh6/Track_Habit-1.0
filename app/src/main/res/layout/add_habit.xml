@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Input for habit name -->
+    <EditText
+        android:id="@+id/habitNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Habit Name"
+        android:maxLength="30"/>
+
+    <!-- Input for habit description -->
+    <EditText
+        android:id="@+id/habitDescriptionInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Habit Description"
+        android:maxLength="40"/>
+
+
+</LinearLayout>

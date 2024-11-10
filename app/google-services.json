@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264735568003",
+    "project_id": "trackhabit-914ff",
+    "storage_bucket": "trackhabit-914ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264735568003:android:84bf716534d7576509ebb6",
+        "android_client_info": {
+          "package_name": "com.trackhabit.myapplication.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi8JX3lYDO1uvcDFgt5hofvaLWilV2Xq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

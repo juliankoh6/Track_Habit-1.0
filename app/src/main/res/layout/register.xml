@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Large Heading centered at the top -->
+    <TextView
+        android:id="@+id/registerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
+
+    <!-- Full Name Field -->
+    <EditText
+        android:id="@+id/registerNameField"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="text"
+        android:backgroundTint="@android:color/black"
+        android:layout_below="@id/registerTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="24dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:maxLength="30" />
+
+    <!-- Email Field -->
+    <EditText
+        android:id="@+id/registerEmailField"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@android:color/black"
+        android:layout_below="@id/registerNameField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true" />
+
+    <!-- Password Field -->
+    <EditText
+        android:id="@+id/registerPasswordField"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:backgroundTint="@android:color/black"
+        android:layout_below="@id/registerEmailField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true" />
+
+    <!-- Confirm Password Field -->
+    <EditText
+        android:id="@+id/confirmPasswordField"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:backgroundTint="@android:color/black"
+        android:layout_below="@id/registerPasswordField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true" />
+
+    <!-- Register Button -->
+    <Button
+        android:id="@+id/completeRegisterButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="24sp"
+        android:layout_below="@id/confirmPasswordField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Already have an account Button aligned to bottom -->
+    <Button
+        android:id="@+id/backToLoginButton"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Back to Login"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp" />
+
+</RelativeLayout>
