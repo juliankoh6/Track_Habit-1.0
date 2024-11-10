@@ -127,31 +127,33 @@ public class ProgressActivity extends AppCompatActivity {
                         if (dailyCompletions != null) {
                             int completedDays = 0;
                             int missedDays = 0;
-                            LocalDate earliestDate = null;
+
+                            // Calculate cutoff date 28 days before today
+                            LocalDate cutoffDate = LocalDate.now().minusDays(28);
 
                             for (Map.Entry<String, Boolean> entry : dailyCompletions.entrySet()) {
                                 LocalDate currentDate = LocalDate.parse(entry.getKey());
 
-                                if (earliestDate == null || currentDate.isBefore(earliestDate)) {
-                                    earliestDate = currentDate;
-                                }
-
-                                if (entry.getValue()) {
-                                    completedDays++;
-                                } else {
-                                    missedDays++;
+                                // Only consider dates within the last 28 days
+                                if (currentDate.isAfter(cutoffDate) || currentDate.isEqual(cutoffDate)) {
+                                    if (entry.getValue()) {
+                                        completedDays++;
+                                    } else {
+                                        missedDays++;
+                                    }
                                 }
                             }
 
                             int totalDays = completedDays + missedDays;
-                            int completionPercentage = (int) ((completedDays / (float) totalDays) * 100);
+                            int completionPercentage = totalDays > 0 ? (int) ((completedDays / (float) totalDays) * 100) : 0;
 
                             completionStatus.setText("Consistency: " + completionPercentage + "%");
                             totalDaysView.setText("Completed Days: " + completedDays + " | Missed Days: " + missedDays);
                             setColorBasedOnCompletion(completionPercentage);
 
-                            if (earliestDate != null) {
+                            if (totalDays > 0) {
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                                LocalDate earliestDate = LocalDate.now().minusDays(28);
                                 creationDateView.setText("Started on: " + earliestDate.format(formatter));
                             } else {
                                 creationDateView.setText("Start date unavailable");
@@ -168,6 +170,7 @@ public class ProgressActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show());
     }
 
+
     // Calculate consistency for each day of the week
     private void calculateDayBasedInsights() {
         // Initialize counters for each day of the week
@@ -178,18 +181,24 @@ public class ProgressActivity extends AppCompatActivity {
             dayStats.put(day, new int[]{0, 0});
         }
 
-        // Loop through dailyCompletions to populate counters
+        // Define cutoff date as 28 days before today
+        LocalDate cutoffDate = LocalDate.now().minusDays(28);
+
+        // Loop through dailyCompletions
         if (dailyCompletions != null) {
             for (Map.Entry<String, Boolean> entry : dailyCompletions.entrySet()) {
                 LocalDate date = LocalDate.parse(entry.getKey());
-                String dayOfWeek = date.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
 
-                // Update total count for that day
-                int[] counts = dayStats.get(dayOfWeek);
-                counts[0]++;
-                // increment
-                if (entry.getValue()) {
-                    counts[1]++;
+                // Only consider entries from the last 28 days
+                if (date.isAfter(cutoffDate) || date.isEqual(cutoffDate)) {
+                    String dayOfWeek = date.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+
+                    // Update total count for that day
+                    int[] counts = dayStats.get(dayOfWeek);
+                    counts[0]++;
+                    if (entry.getValue()) {
+                        counts[1]++;
+                    }
                 }
             }
         }
@@ -212,6 +221,7 @@ public class ProgressActivity extends AppCompatActivity {
         int consistency = (totalDays > 0) ? (completedDays * 100 / totalDays) : 0;
         dayTextView.setText(day + " " + consistency + "% ");
     }
+
 
     // Set color of score based on percentage
     private void setColorBasedOnCompletion(int completionPercentage) {
