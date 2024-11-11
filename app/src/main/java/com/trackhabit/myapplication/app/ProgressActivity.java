@@ -127,6 +127,7 @@ public class ProgressActivity extends AppCompatActivity {
                         if (dailyCompletions != null) {
                             int completedDays = 0;
                             int missedDays = 0;
+                            LocalDate earliestDate = LocalDate.now();
 
                             // Calculate cutoff date 28 days before today
                             LocalDate cutoffDate = LocalDate.now().minusDays(28);
@@ -136,6 +137,9 @@ public class ProgressActivity extends AppCompatActivity {
 
                                 // Only consider dates within the last 28 days
                                 if (currentDate.isAfter(cutoffDate) || currentDate.isEqual(cutoffDate)) {
+                                    if (currentDate.isBefore(earliestDate)) {
+                                        earliestDate = currentDate;
+                                    }
                                     if (entry.getValue()) {
                                         completedDays++;
                                     } else {
@@ -143,7 +147,6 @@ public class ProgressActivity extends AppCompatActivity {
                                     }
                                 }
                             }
-
                             int totalDays = completedDays + missedDays;
                             int completionPercentage = totalDays > 0 ? (int) ((completedDays / (float) totalDays) * 100) : 0;
 
@@ -153,7 +156,6 @@ public class ProgressActivity extends AppCompatActivity {
 
                             if (totalDays > 0) {
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                LocalDate earliestDate = LocalDate.now().minusDays(28);
                                 creationDateView.setText("Started on: " + earliestDate.format(formatter));
                             } else {
                                 creationDateView.setText("Start date unavailable");
@@ -181,7 +183,7 @@ public class ProgressActivity extends AppCompatActivity {
             dayStats.put(day, new int[]{0, 0});
         }
 
-        // Define cutoff date as 28 days before today
+        // Define cutoff  as 28 days
         LocalDate cutoffDate = LocalDate.now().minusDays(28);
 
         // Loop through dailyCompletions
@@ -189,7 +191,6 @@ public class ProgressActivity extends AppCompatActivity {
             for (Map.Entry<String, Boolean> entry : dailyCompletions.entrySet()) {
                 LocalDate date = LocalDate.parse(entry.getKey());
 
-                // Only consider entries from the last 28 days
                 if (date.isAfter(cutoffDate) || date.isEqual(cutoffDate)) {
                     String dayOfWeek = date.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
 
