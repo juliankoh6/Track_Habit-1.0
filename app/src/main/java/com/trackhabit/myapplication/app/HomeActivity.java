@@ -370,29 +370,29 @@ public class HomeActivity extends AppCompatActivity implements HabitAdapter.OnHa
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
+    
     // Delete selected habits
     private void deleteSelectedHabits(boolean[] selectedItems) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            ArrayList<Integer> itemsToRemove = new ArrayList<>();
+            ArrayList<String> habitIdsToRemove = new ArrayList<>();
 
+            // Collect IDs of habits to delete
             for (int i = 0; i < selectedItems.length; i++) {
                 if (selectedItems[i]) {
-                    itemsToRemove.add(i);
+                    habitIdsToRemove.add(habitList.get(i).getId());
                 }
             }
 
-            for (int i = itemsToRemove.size() - 1; i >= 0; i--) {
-                int index = itemsToRemove.get(i);
-                String habitId = habitList.get(index).getId();
-
+            // Delete each habit in Firestore
+            for (String habitId : habitIdsToRemove) {
                 db.collection("users").document(userId).collection("habits")
                         .document(habitId).delete()
                         .addOnSuccessListener(aVoid -> {
-                            habitList.remove(index);
-                            habitAdapter.notifyItemRemoved(index);
+                            // Remove habit from list and notify adapter for every habit
+                            habitList.removeIf(habit -> habit.getId().equals(habitId));
+                            habitAdapter.notifyDataSetChanged();
                             updateProgress();
                         })
                         .addOnFailureListener(e -> Toast.makeText(HomeActivity.this,
